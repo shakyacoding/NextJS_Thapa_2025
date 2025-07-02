@@ -1,5 +1,27 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## MySql command used to make database -:
+create database hospital;
+Show databases;
+use hospital;
+CREATE TABLE patients (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    age INT,
+    gender ENUM('Male', 'Female', 'Other'),
+    disease VARCHAR(100),
+    admit_date DATE
+);
+
+INSERT INTO patients (name, age, gender, disease, admit_date)
+VALUES 
+('Rahul Sharma', 45, 'Male', 'Diabetes', '2025-07-01'),
+('Anjali Verma', 32, 'Female', 'Hypertension', '2025-07-02');
+
+Select * from patients;
+
+
+
 ## Getting Started
 
 First, run the development server:
