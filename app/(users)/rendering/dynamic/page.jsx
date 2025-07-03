@@ -1,5 +1,5 @@
 import { db } from "@/config/db.jsx";
-
+// test 
 export const dynamic = 'force-dynamic';
 
 const DynamicPage = async () => {
