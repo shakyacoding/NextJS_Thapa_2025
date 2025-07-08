@@ -31,7 +31,7 @@ const PatientLists = async () => {
           {patients.map((data) => {
             return (
               <>
-                <li key={data.id}>{data.name} , Age {data.age} , {data.gender} , Diseases = {data.disease}</li>
+                <li key={data.id}>{data.id}, {data.name} , Age {data.age} , {data.gender} , Diseases = {data.disease}</li>
 
               </>
             )
