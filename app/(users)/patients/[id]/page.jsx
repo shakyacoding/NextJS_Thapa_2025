@@ -1,6 +1,18 @@
 import { db } from "@/config/db";
 import { notFound } from "next/navigation";
 
+
+
+// To make dynamic page to Static page, so that everytime it not fetch data from database
+export async function generateStaticParams(){
+    const [patient] = await db.execute('Select id from patients');
+    return patient.map((patient) => ({id: patient.id.toString()}))
+}
+
+
+
+
+
 const SinglePatient = async (props) => {
     const params = await props.params
     console.log("params: ", params);
