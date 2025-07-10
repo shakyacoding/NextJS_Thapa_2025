@@ -1,6 +1,16 @@
 import { db } from "@/config/db";
 import { notFound } from "next/navigation";
 
+
+// generateStaticParams, to convert dynamic page to static page 
+export async function generateStaticParams(){
+    const [patient] = await db.execute('Select id from patients');
+    return patient.map((patient) => ({ id: patient.id.toString() }))
+}
+
+
+
+
 const SinglePatient = async (props) => {
     const params = await props.params
     console.log("params: ", params);
@@ -15,7 +25,7 @@ const SinglePatient = async (props) => {
     if(!patient) return (
         <>
         <div className="flex justify-center align-middle mt-25">
-            <h1>Doctor Not found</h1>
+            <h1>Patient Not found</h1>
         </div>
         </>
     )
