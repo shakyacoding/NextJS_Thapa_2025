@@ -1,14 +1,25 @@
-import { contactAction } from "./contact.action";
+"use client";
 
-export const metadata = {
+// import {contactAction} from "./contact.action";
+
+/* export const metadata = {
   title: "Contact Page",
   description: "this is my Contact page",
   authors: [
     { name: "vinod thapa" },
     { name: "thapa technical", url: "thapatechical.com" },
-  ],
-  keywords: ["nextjs", "react_js", "fullstack"],
-};
+    ],
+    keywords: ["nextjs", "react_js", "fullstack"],
+    }; */
+    
+    const contactAction = (formData) => {
+      const {fullName, email, message} = Object.fromEntries(formData.entries());
+      console.log(fullName, email, message)
+      alert(`Thanku ${fullName}`)
+    }
+    
+    
+
 
 const Contact = async () => {
   return (
