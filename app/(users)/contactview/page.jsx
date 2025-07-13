@@ -29,10 +29,8 @@ const ContactLists = async () => {
           {contacts.map((data) => {
             return (
               <>
-                <card>
 
                 <li key={data.id}>{data.id}, Name {data.full_name} , Email {data.email} , message {data.message} </li>
-                </card>
 
               </>
             )

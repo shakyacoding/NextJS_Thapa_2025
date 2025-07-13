@@ -2,7 +2,9 @@
 
 import { db } from "@/config/db";
 
-export const contactAction = async (formData) => {
+export const contactAction = async (previousState,  formData) => {
+
+  try {
     const { fullName, email, message } = Object.fromEntries(formData.entries());
     console.log(fullName, email, message);
 
@@ -10,4 +12,12 @@ export const contactAction = async (formData) => {
     `insert into contact_form (full_name, email, message) values (?, ? , ?)`,
     [fullName, email, message]
   );
+  return {success: true, message: "Form Submitted Successfully"};
+
+  } catch (error) {
+    console.log("Server action:", error)
+    return {success: false, message: "error while submitting"}
+  }
+
+    
 }
