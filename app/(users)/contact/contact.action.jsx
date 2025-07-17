@@ -1,6 +1,7 @@
 "use server";
 
 import { db } from "@/config/db";
+import { redirect } from "next/navigation";
 
 export const contactAction = async (previousState,  formData) => {
 
@@ -12,10 +13,12 @@ export const contactAction = async (previousState,  formData) => {
     `insert into contact_form (full_name, email, message) values (?, ? , ?)`,
     [fullName, email, message]
   );
-  return {success: true, message: "Form Submitted Successfully"};
+  // return {success: true, message: "Form Submitted Successfully"};
+  redirect("/")
+
 
   } catch (error) {
-    console.log("Server action:", error)
+    if (error.message === "NEXT_REDIRECT") throw error;
     return {success: false, message: "error while submitting"}
   }
 
