@@ -1,31 +1,33 @@
 "use client";
 
-import { useActionState } from "react";
-import { contactAction } from "./contact.action";
+import { useState, useTransition } from "react";
 import { useFormState } from "react-dom";
+import { contactAction } from "./contact.action";
 
-// import {contactAction} from "./contact.action";
-
-/* export const metadata = {
-  title: "Contact Page",
-  description: "this is my Contact page",
-  authors: [
-    { name: "vinod thapa" },
-    { name: "thapa technical", url: "thapatechical.com" },
-    ],
-    keywords: ["nextjs", "react_js", "fullstack"],
-    }; */
-
-/*   const contactAction = (formData) => {
-    const {fullName, email, message} = Object.fromEntries(formData.entries());
-    console.log(fullName, email, message)
-    alert(`Thanku ${fullName}`)
-  } */
+// import { useActionState } from "react";
 
 
 
 const Contact = () => {
-  const [state, formAction, isPending] = useActionState(contactAction, null);
+  // const [state, formAction, isPending] = useActionState(contactAction, null);
+  
+  const[ isPending, startTransition ] = useTransition()
+  const [ contactFormResponse, setContactFormResponse ] = useState(null)
+
+  const handleContactSubmit = (formData) => {
+    const { fullName, email, message } = Object.fromEntries(formData)
+    startTransition( async() => {
+     const res = await contactAction( fullName, email, message )
+     setContactFormResponse(res)
+    })
+  }  
+
+
+
+
+
+
+
   return (
     <>
       <div className="flex justify-center align-middle  h-screen   mt-25 bg-gray-600 border-2 border-black">
@@ -34,7 +36,7 @@ const Contact = () => {
           <h1 className="font-extrabold text-3xl">Get In Touch</h1>
 
           <div className="mt-7">
-            <form className="space-y-6" action={formAction}>
+            <form className="space-y-6" action={handleContactSubmit}>
 
 
               {/* Name  */}
@@ -88,9 +90,9 @@ const Contact = () => {
 
           <section>
             {
-              state && (
-                <p className={` p-4 mt-5 text-center  ${state.success ? "bg-green-500" : "bg-red-600"}`}>
-                  {state.message}
+              contactFormResponse && (
+                <p className={` p-4 mt-5 text-center  ${contactFormResponse.success ? "bg-green-500" : "bg-red-600"}`}>
+                  {contactFormResponse.message}
 
                 </p>
               )
