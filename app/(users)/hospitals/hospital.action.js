@@ -1,7 +1,7 @@
 "use server";
 
 import { db2 } from "@/config/db2";
-import { revalidatePath } from "next/cache";
+// import { revalidatePath } from "next/cache";
 
 export const createHospitalAction = async (formData) => {
   try {
@@ -14,9 +14,9 @@ export const createHospitalAction = async (formData) => {
       [name, city, state, department, established_year]
     );
 
-    revalidatePath("/hospitals");
+    // revalidatePath("/hospitals");
 
-    // return { success: true, message: "Hospital data submitted successfully" };
+    return { success: true, message: "Hospital data submitted successfully" };
   } catch (error) {
     if (error.message === "NEXT_REDIRECT") throw error;
     console.error('Database error:', error);
