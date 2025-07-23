@@ -1,8 +1,8 @@
-import { db } from "@/config/db.jsx";
+import { db1 } from "@/config/db1.jsx";
 export const revalidate = 30;
 
 const StaticPage = async () => {
-  const [patients] = await db.execute("Select * from patients");
+  const [patients] = await db1.execute("Select * from patients");
   console.log("Static patients");
 
   return (

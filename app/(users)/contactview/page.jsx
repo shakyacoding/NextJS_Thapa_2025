@@ -1,4 +1,4 @@
-import { db } from "@/config/db.jsx";
+import { db1 } from "@/config/db1.jsx";
 import {cache} from 'react';
 
 export const dynamic = 'force-dynamic';
@@ -42,7 +42,7 @@ const ContactLists = async () => {
 }
 
 const getAllContacts =  cache( async () => {
-  const [contacts] = await db.execute("Select * from contact_form");
+  const [contacts] = await db1.execute("Select * from contact_form");
   console.log('fetching contact')
   return contacts;
 })

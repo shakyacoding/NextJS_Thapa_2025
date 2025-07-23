@@ -1,6 +1,6 @@
 "use server";
 
-import { db } from "@/config/db";
+import { db1 } from "@/config/db1";
 // import { redirect } from "next/navigation";
 
 export const contactAction = async (fullName,email,message) => {
@@ -9,7 +9,7 @@ export const contactAction = async (fullName,email,message) => {
     // const { fullName, email, message } = Object.fromEntries(formData.entries());
     // console.log(fullName, email, message);
 
-     await db.execute(
+     await db1.execute(
     `insert into contact_form (full_name, email, message) values (?, ? , ?)`,
     [fullName, email, message]
   );
